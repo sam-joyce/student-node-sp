@@ -4,6 +4,6 @@
 ### After cloning repo run
 ```npm install```
 
-### to start server run
+### To start server run
 ```npm run watch```
-### uses nodemon for live reloading on file save
+### Uses nodemon for live reloading on file save
