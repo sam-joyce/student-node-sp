@@ -1,21 +1,14 @@
 import Router from 'express';
+import * as students from "../controllers/students.controller.js";
 
-const router = Router(); 
+const router = Router();
 
-router.get('/', (req, res) => res.status(200).send({
-  message: "Here is all the students!"
-}))
+router.get('/', students.findAll);
 
-router.get("/:id", (req, res) => res.status(200).send({
-  message: "Got one student!"
-}));
+router.get("/:id", students.find);
 
-router.post("/", (req, res) => res.status(201).send({
-  message: "Created a new student!"
-}));
+router.post("/", students.create);
 
-router.delete("/:id", (req, res) => res.status(204).send({
-  message: "One student down!"
-}));
+router.delete("/:id", students.destroy);
 
 export default router;
