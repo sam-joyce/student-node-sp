@@ -1,23 +1,23 @@
+import Student from "../models/student.js";
+
+
 export const findAll = (req, res) => {
-  res.status(200).send({
-      message: "all the students!"
-  });
+  const students = Student.findAll();
+  res.status(200).send({ students });
 }
 
 export const find = (req, res) => {
-  res.status(200).send({
-      message: "one student with id: " + req.params.id
-  });
+  const student = Student.find(req.params.id);
+  res.status(200).send({ student });
 }
 
 export const create = (req, res) => {
-  res.status(201).send({
-      message: "Student successfully created"
-  });
+  const student = new Student();
+  const message = student.save();
+  res.status(201).send({ message, student });
 }
 
 export const destroy = (req, res) => {
-  res.status(202).send({
-      message: "Student successfully deleted with id: " + req.params.id
-  });
+  const message = Student.destroy(req.params.id)
+  res.status(202).send({ message });
 }
