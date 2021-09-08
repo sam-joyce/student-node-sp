@@ -6,4 +6,4 @@
 
 ### To start server run
 ```npm run watch```
-### Uses nodemon for live reloading on file save
+#### Uses nodemon for live reloading on file save
