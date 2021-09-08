@@ -1,25 +1,34 @@
-export default class Student {
-  constructor(id, name, age, interests) {
-    this.id = id;
-    this.name = name;
-    this.age = age;
-    this.interests = interests;
+const db = require('../config/firebase.js');
+
+class Student {
+  constructor(data) {
+    this.id = data.id;
+    this.name = data.name;
+    this.age = data.age;
+    this.interests = data.interests;
     this.dateCreated = new Date().toUTCString();
   }
 
-  static findAll() {
-      return "I'm all the students";
+  static async findAll() {
+      const res = await db.collection('students').get();
+      return res.docs.map(doc => doc.data());
   }
 
-  static find(id) {
-      return "I'm a student with id: " + id;
+  static async find(id) {
+    const res = await db.collection("students").doc(id).get();
+    return res.data();
   }
 
-  save() {
-      return "Created student";
+  async save() {
+    this.dateModified = new Date().toUTCString();
+    const student = {...this};
+    const res = await db.collection("students").doc().set(student);
   }
 
-  static destroy(id) {
-      return "Deleted a student with id: " + id;
+  static async destroy(id) {
+    await db.collection("students").doc(id).delete();
+    return id + " has been deleted."
   }
 }
+
+module.exports = Student;

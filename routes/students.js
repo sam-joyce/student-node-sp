@@ -1,5 +1,5 @@
-import Router from 'express';
-import * as students from "../controllers/students.controller.js";
+const Router = require('express');
+const students = require("../controllers/students.controller.js");
 
 const router = Router();
 
@@ -11,4 +11,4 @@ router.post("/", students.create);
 
 router.delete("/:id", students.destroy);
 
-export default router;
+module.exports = router;

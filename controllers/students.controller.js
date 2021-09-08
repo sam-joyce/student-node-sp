@@ -1,17 +1,17 @@
-import Student from "../models/student.js";
+const Student = require("../models/student.js");
 
 
-export const findAll = (req, res) => {
+const findAll = (req, res) => {
   const students = Student.findAll();
-  res.status(200).send({ students });
+  res.status(200).send({students});
 }
 
-export const find = (req, res) => {
+const find = (req, res) => {
   const student = Student.find(req.params.id);
   res.status(200).send({ student });
 }
 
-export const create = (req, res) => {
+const create = (req, res) => {
   const newStudent = new Student(req.body);
   newStudent.save();
   res.status(201).send({ 
@@ -20,7 +20,9 @@ export const create = (req, res) => {
   });
 }
 
-export const destroy = (req, res) => {
+const destroy = (req, res) => {
   const message = Student.destroy(req.params.id)
   res.status(202).send({ message });
 }
+
+module.exports = {findAll, find, create, destroy};
