@@ -1,5 +1,5 @@
 # Node content for the SP Course :new_moon_with_face:
-#### Repo is broken down into branches that correlate to the different videos of the node module. Coaches should be able to ask students what number video they are watching, and for example if they say number 3, the coach can go to branch 4 to see the completed code of that video and easily solve the bug.
+#### Repo is broken down into branches that correlate to the different videos of the node module. Coaches should be able to ask students what number video they are watching, and for example if they say number 3, the coach can go to branch 4 to see the completed code of that video and easily solve the bug :bug:.
 
 ### After cloning repo run
 ```npm install```
