@@ -6,4 +6,6 @@
 
 ### To start server run
 ```npm run watch```
-#### Uses nodemon for live reloading on file save
+
+- Built using express (node framework)
+- Uses nodemon for live reloading on file save
