@@ -1,5 +1,11 @@
 export default class Student {
-  constructor() {}
+  constructor(id, name, age, interests) {
+    this.id = id;
+    this.name = name;
+    this.age = age;
+    this.interests = interests;
+    this.dateCreated = new Date().toUTCString();
+  }
 
   static findAll() {
       return "I'm all the students";

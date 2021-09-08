@@ -12,9 +12,12 @@ export const find = (req, res) => {
 }
 
 export const create = (req, res) => {
-  const student = new Student();
-  const message = student.save();
-  res.status(201).send({ message, student });
+  const newStudent = new Student(req.body);
+  newStudent.save();
+  res.status(201).send({ 
+    message: "Student has been made", 
+    student: newStudent 
+  });
 }
 
 export const destroy = (req, res) => {

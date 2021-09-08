@@ -5,6 +5,8 @@ import router from './routes/students.js';
 const app = express();
 const port  = process.env.PORT || 3000;
 
+app.use(express.json());
+
 app.use('/api/students', router);
 app.get('/api', (req, res) => {
    res.send("Welcome to my API!");
