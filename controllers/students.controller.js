@@ -1,13 +1,15 @@
 const Student = require("../models/student.js");
 
 
-const findAll = (req, res) => {
-  const students = Student.findAll();
-  res.status(200).send({students});
+const findAll = async (req, res) => {
+  const students = await Student.findAll();
+  res.status(200).send({ students });
 }
 
-const find = (req, res) => {
-  const student = Student.find(req.params.id);
+const find = async (req, res) => {
+  // console.log(req.params.id);
+  const student = await Student.find(req.params.id);
+  console.log(student);
   res.status(200).send({ student });
 }
 
@@ -20,8 +22,8 @@ const create = (req, res) => {
   });
 }
 
-const destroy = (req, res) => {
-  const message = Student.destroy(req.params.id)
+const destroy = async (req, res) => {
+  const message = await Student.destroy(req.params.id)
   res.status(202).send({ message });
 }
 

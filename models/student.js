@@ -10,23 +10,38 @@ class Student {
   }
 
   static async findAll() {
-      const res = await db.collection('students').get();
-      return res.docs.map(doc => doc.data());
+      return db.collection('students').get().then((res) => {
+        return res.docs.map(doc => doc.data());
+      });
   }
 
   static async find(id) {
-    const res = await db.collection("students").doc(id).get();
-    return res.data();
-  }
+    const response = await db
+        .collection("students")
+        .where("id", "==", id)
+        .get();
+    return response.docs.map(doc => doc.data());
+}
+
+  // static async find(id) {
+  //   // console.log(id);
+  //   const stringId = `${id}`;
+  //   return await db.collection('students').doc(id).get().then(res => res.data())
+  // }
 
   async save() {
-    this.dateModified = new Date().toUTCString();
-    const student = {...this};
+    // this.dateModified = new Date().toUTCString();
+    const student = {...this}; 
     const res = await db.collection("students").doc().set(student);
   }
 
   static async destroy(id) {
-    await db.collection("students").doc(id).delete();
+    await db
+      .collection("students")
+      .where("id", "==", id)
+      .get()
+      .then(res => res.forEach(r => r.ref.delete()))
+
     return id + " has been deleted."
   }
 }
